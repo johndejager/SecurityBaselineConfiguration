@@ -1578,7 +1578,7 @@ Configuration SecurityBaselineConfigurationWS2016
 
 		}
 
-		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to Success and Failure" 
+		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to 'Success and Failure'(Success)" 
 		{
 			Name = 'Other Object Access Events'
 			Ensure = 'Present'
@@ -1586,7 +1586,7 @@ Configuration SecurityBaselineConfigurationWS2016
 
 		}
 
-		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to Success and Failure" 
+		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to 'Success and Failure' (Failure)" 
 		{
 			Name = 'Other Object Access Events'
 			Ensure = 'Present'
