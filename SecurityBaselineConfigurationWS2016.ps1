@@ -78,14 +78,14 @@ Configuration SecurityBaselineConfigurationWS2016
 
 	 	}
 
-	 	Registry "NOT_ASSIGNED: Ensure 'Allow Telemetry' is set to 'Enabled: 0 - Security [Enterprise Only]'"
+	 	Registry "AZ-WIN-00169: Ensure 'Allow Telemetry' is set to 'Enabled: 0 - Security [Enterprise Only]'"
 	 	{
 	 	 	ValueName = 'AllowTelemetry'
 	 	 	ValueType = 'DWORD'
-	 	 	Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection'
-	 	 	ValueData = 2
+	 	 	Key = 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection'
+	 	 	ValueData = 0
 
-	 	}
+		 }
 
 	 	Registry "CCE-38223-4: Ensure 'Allow unencrypted traffic' is set to 'Disabled'"
 	 	{
@@ -1417,7 +1417,21 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Key = 'HKLM:\Software\Policies\Microsoft\WindowsFirewall\PublicProfile'
 	 	 	ValueData = 1
 
-	 	}
+		 }
+		 
+		AuditPolicySubcategory "CCE-37133-6: Ensure 'Audit Account Lockout' is set to 'Success and Failure' (Success)"
+		{
+			Name = 'Account Lockout'
+			Ensure = 'Present'
+			AuditFlag = 'Success'
+		}
+
+		AuditPolicySubcategory "CCE-37133-6: Ensure 'Audit Account Lockout' is set to 'Success and Failure' (Failure)"
+		{
+			Name = 'Account Lockout'
+			Ensure = 'Present'
+			AuditFlag = 'Failure'
+		}
 
 	 	AuditPolicySubcategory "CCE-38329-9: Ensure 'Audit Application Group Management' is set to 'Success and Failure' (Success)"
 	 	{
@@ -1425,8 +1439,8 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Ensure = 'Absent'
 	 	 	AuditFlag = 'Success'
 
-	 	}
-
+		 }
+		 
  	 	AuditPolicySubcategory "CCE-38329-9: Ensure 'Audit Application Group Management' is set to 'Success and Failure' (Failure)"
 	 	{
 	 	 	Name = 'Application Group Management'
@@ -1481,12 +1495,21 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Ensure = 'Absent'
 	 	 	AuditFlag = 'Failure'
 
-	 	}
+		 }
+		 
+		 AuditPolicySubcategory "AZ-WIN-00026: Ensure 'Audit Group Membership' is set to 'Success'"
+	 	{
+	 	 	Name = 'Group Membership'
+	 	 	Ensure = 'Absent'
+	 	 	AuditFlag = 'Success'
+
+		 }
 
 	 	AuditPolicySubcategory "CCE-38237-4: Ensure 'Audit Logoff' is set to 'Success'"
 	 	{
-	 	 	Name = 'Logoff'
-	 	 	AuditFlag = 'Success'
+			Name = 'Logoff'
+			Ensure = 'Present'
+	 		AuditFlag = 'Success'
 
 	 	}
 
@@ -1504,7 +1527,24 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Ensure = 'Present'
 	 	 	AuditFlag = 'Failure'
 
-	 	}
+		 }
+		
+		AuditPolicySubcategory "AZ-WIN-00111: Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure' (Success)"
+	 	{
+	 	 	Name = 'MPSSVC Rule-Level Policy Change'
+	 	 	Ensure = 'Present'
+	 	 	AuditFlag = 'Success'
+
+		 }
+		
+		AuditPolicySubcategory "AZ-WIN-00111: Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure' (Failure)"
+	 	{
+	 	 	Name = 'MPSSVC Rule-Level Policy Change'
+	 	 	Ensure = 'Present'
+	 	 	AuditFlag = 'Failure'
+
+		 }
+
 
 	 	AuditPolicySubcategory "CCE-37855-4: Ensure 'Audit Other Account Management Events' is set to 'Success and Failure' (Success)"
 	 	{
@@ -1512,30 +1552,72 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Ensure = 'Absent'
 	 	 	AuditFlag = 'Success'
 
-	 	}
+		 }
 
- 	 	AuditPolicySubcategory "CCE-37855-4: Ensure 'Audit Other Account Management Events' is set to 'Success and Failure' (Failure)"
+		 AuditPolicySubcategory "CCE-37855-4: Ensure 'Audit Other Account Management Events' is set to 'Success and Failure' (Failure)"
 	 	{
 	 	 	Name = 'Other Account Management Events'
 	 	 	Ensure = 'Absent'
 	 	 	AuditFlag = 'Failure'
 
 	 	}
+		
+		AuditPolicySubcategory "CCE-36322-6: Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure' (Failure)" 
+		{
+			Name = 'Other Logon/Logoff Events'
+			Ensure = 'Present'
+			AuditFlag = 'Failure'
 
-	 	AuditPolicySubcategory "NOT_ASSIGNED: Ensure 'Audit PNP Activity' is set to 'Success'"
+		}
+		
+		AuditPolicySubcategory "CCE-36322-6: Ensure 'Audit Other Logon/Logoff Events' is set to 'Success and Failure' (Success)" 
+		{
+			Name = 'Other Logon/Logoff Events'
+			Ensure = 'Present'
+			AuditFlag = 'Success'
+
+		}
+
+		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to Success and Failure" 
+		{
+			Name = 'Other Object Access Events'
+			Ensure = 'Present'
+			AuditFlag = 'Success'
+
+		}
+
+		AuditPolicySubcategory "AZ-WIN-00113: Ensure 'Audit Other Object Access Events' is set to Success and Failure" 
+		{
+			Name = 'Other Object Access Events'
+			Ensure = 'Present'
+			AuditFlag = 'Failure'
+
+		}
+
+	 	AuditPolicySubcategory "AZ-WIN-00182: Ensure 'Audit PNP Activity' is set to 'Success'"
 	 	{
-	 	 	Name = 'Plug and Play Events'
+			Name = 'Plug and Play Events'
+			Ensure = 'Present'
 	 	 	AuditFlag = 'Success'
 
-	 	}
+		}
 
-	 	AuditPolicySubcategory "CCE-36059-4: Ensure 'Audit Process Creation' is set to 'Success'"
+	 	AuditPolicySubcategory "CCE-36059-4: Ensure 'Audit Process Creation' is set to 'Success and Failure' (Success)"
 	 	{
-	 	 	Name = 'Process Creation'
+			Name = 'Process Creation'
+			Ensure = 'Present'
 	 	 	AuditFlag = 'Success'
 
-	 	}
+		}
+		
+	 	AuditPolicySubcategory "CCE-36059-4: Ensure 'Audit Process Creation' is set to 'Success and Failure' (Failure)"
+	 	{
+			Name = 'Process Creation'
+			Ensure = 'Present'
+	 	 	AuditFlag = 'Failure'
 
+		}
+		
 	 	AuditPolicySubCategory "CCE-37617-8: Ensure 'Audit Removable Storage' is set to 'Success and Failure' (Success)"
 	 	{
 	 	 	Name = 'Removable Storage'
@@ -1554,15 +1636,17 @@ Configuration SecurityBaselineConfigurationWS2016
 
 	 	AuditPolicySubcategory "CCE-38034-5: Ensure 'Audit Security Group Management' is set to 'Success and Failure'"
 	 	{
-	 	 	Name = 'Security Group Management'
+			Name = 'Security Group Management'
+			Ensure = 'Present'
 	 	 	AuditFlag = 'Success'
 
 	 	}
 
 	 	AuditPolicySubcategory "CCE-36266-5: Ensure 'Audit Special Logon' is set to 'Success'"
 	 	{
-	 	 	Name = 'Special Logon'
-	 	 	AuditFlag = 'Success'
+			Name = 'Special Logon'
+			Ensure = 'Present'
+			AuditFlag = 'Success'
 
 	 	}
 
@@ -1628,8 +1712,29 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Ensure = 'Absent'
 	 	 	AuditFlag = 'Failure'
 
-	 	}
+		 }
 
+		AuditPolicySubcategory "CCE-36144-4: Ensure 'Audit Security System Extension' is set to 'Success "
+		{
+			Name      = 'Security System Extension'
+			Ensure    = 'Present'
+			AuditFlag = 'Success'
+		}
+
+		 AuditPolicySubcategory "CCE-36267-3: Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure' (Failure)"
+		{
+			Name      = 'Sensitive Privilege Use'
+			Ensure    = 'Present'
+			AuditFlag = 'Failure'
+		}
+
+		AuditPolicySubcategory "CCE-36267-3: Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure' (Success)"
+		{
+			Name      = 'Sensitive Privilege Use'
+			Ensure    = 'Present'
+			AuditFlag = 'Success'
+		}
+		
 	 	UserRightsAssignment "CCE-35818-4: Configure 'Access this computer from the network'"
 	 	{
 	 	 	Policy = 'Access_this_computer_from_the_network'
@@ -1703,7 +1808,7 @@ Configuration SecurityBaselineConfigurationWS2016
 	 	 	Identity = @('BUILTIN\Backup Operators'
 	 	 	)
 
-	 	}
+		 }
 
 	 	UserRightsAssignment "CCE-37452-0: Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'"
 	 	{
