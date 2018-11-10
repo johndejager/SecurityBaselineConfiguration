@@ -1500,7 +1500,7 @@ Configuration SecurityBaselineConfigurationWS2016
 		 AuditPolicySubcategory "AZ-WIN-00026: Ensure 'Audit Group Membership' is set to 'Success'"
 	 	{
 	 	 	Name = 'Group Membership'
-	 	 	Ensure = 'Absent'
+	 	 	Ensure = 'Present'
 	 	 	AuditFlag = 'Success'
 
 		 }
@@ -1758,7 +1758,7 @@ Configuration SecurityBaselineConfigurationWS2016
 		{
 			Policy = 'Allow_log_on_locally'
 			Force = $True
-			Identity = @('BUILTIN\Administrators','BUILTIN\Backup Operators', 'BUILTIN\Users'
+			Identity = @('BUILTIN\Administrators'
 			)
 			
 		}
@@ -2008,7 +2008,7 @@ Configuration SecurityBaselineConfigurationWS2016
 		{
 			Policy = 'Replace_a_process_level_token'
 			Force = $True
-			Identity = @('BUILTIN\Administrators'
+			Identity = @('NT AUTHORITY\LOCAL SERVICE', 'NT AUTHORITY\NETWORK SERVICE'
 			)
 
 		}
